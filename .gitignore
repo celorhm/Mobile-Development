@@ -1,0 +1,16 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Native
+.expo/
+android/
+ios/
+build/
+*.keystore
+
+# OS
+.DS_Store
+Thumbs.db
