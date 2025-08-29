@@ -1,4 +1,4 @@
-import { Account, Client, Avatars } from "react-native-appwrite";
+import { Account, Client, Avatars, Databases, ID } from "react-native-appwrite";
 
 export const client = new Client()
     .setEndpoint('https://fra.cloud.appwrite.io/v1')
@@ -9,5 +9,6 @@ export const account = new Account(client)
 
 export const avatars = new Avatars(client)
 
+export const db = new Databases(client)
 
 

@@ -1,15 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Stack } from 'expo-router'
-import { UserContextProviderComponent } from '../contexts/userContext'
+import { Stack, Tabs } from 'expo-router'
+import { UserContextProvider } from '../contexts/UserContext'
 
 const RootLayout = () => {
     return (
-        <UserContextProviderComponent>
-            <Stack>
-                <Stack.Screen name='(auth)' options={{ headerShown: false, animation: 'none' }} />
+        <UserContextProvider>
+            <Stack screenOptions={{ headerShown: false, animation: 'none' }}>
+                <Stack.Screen name='(books)' options={{ headerShown: false, animation: 'none' }} />
+                <Stack.Screen name='(dashboard)' options={{ headerShown: false, animation: 'none' }} />
+
+
+
             </Stack>
-        </UserContextProviderComponent>
+        </UserContextProvider>
     )
 }
 

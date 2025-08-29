@@ -1,6 +1,6 @@
 import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 
 //Components
 import { ThemedView } from '../../components/ThemedView'
@@ -21,8 +21,8 @@ const RegistractionScreen = () => {
     const handleRegistration = async () => {
         setError(null)
         try {
-            await register(email, password)
-            console.log('Current user is ', user)
+            await register(email, password, username)
+            router.navigate('index')
         } catch (error) {
             setError(error.message)
         }
@@ -43,10 +43,11 @@ const RegistractionScreen = () => {
                 </ThemedView>
                 <ThemedView style={styles.buttonContainer}>
                     <ThemedButton text={"Sign Up"} onPress={handleRegistration} />
-                    <ThemedButton text={"Sign In"} onPress={() => console.log('Register')} />
+                    <ThemedButton text={"Sign In"} onPress={() => router.navigate('login')} />
                 </ThemedView>
 
-                {error && <><Spacer /> <Text style={styles.errorMessage}>{error}</Text></>}
+                <Spacer />
+                {error && <ThemedView style={styles.errorContainer}><Text style={styles.errorMessage}>{error}</Text></ThemedView>}
             </ThemedView>
         </TouchableWithoutFeedback>
 
@@ -65,16 +66,20 @@ const styles = StyleSheet.create({
     textInputContainer: {
         alignItems: 'center'
     },
-    errorMessage: {
-        fontSize: 20,
-        textAlign: 'center',
-        color: 'tomato',
+    errorContainer: {
+        backgroundColor: '#ffebee',
         padding: 16,
-        backgroundColor: '#f5c1c8',
-        marginHorizontal: 20,
         borderRadius: 8,
-        borderWidth: 1
-
-    }
+        margin: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+    errorMessage: {
+        color: '#d32f2f',
+        fontSize: 14,
+        fontWeight: '500',
+        lineHeight: 20,
+    },
 })
 
