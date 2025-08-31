@@ -24,27 +24,27 @@ const DashboardLayout = () => {
                 animation: 'none'
 
             }}>
-                <Tabs.Screen name='index' options={{
+                {/* <Tabs.Screen name='index' options={{
                     title: 'Home',
                     tabBarIcon: ({ focused }) => (
                         <Ionicons size={24} name={focused ? 'home' : 'home-outline'} color={focused ? theme.iconColorFocused : theme.iconColor}
                         />
                     )
-                }} />
-                <Tabs.Screen name='bookList' options={{
+                }} /> */}
+                <Tabs.Screen name='(books)' options={{
                     title: 'BookList',
                     tabBarIcon: ({ focused }) => (
                         <Ionicons size={24} name={focused ? 'book' : 'book-outline'} color={focused ? theme.iconColorFocused : theme.iconColor}
                         />
                     )
                 }} />
-                <Tabs.Screen name='profile' options={{
+                {/* <Tabs.Screen name='profile' options={{
                     title: 'Profile',
                     tabBarIcon: ({ focused }) => (
                         <Ionicons size={24} name={focused ? 'person' : 'person-outline'} color={focused ? theme.iconColorFocused : theme.iconColor}
                         />
                     )
-                }} />
+                }} /> */}
             </Tabs>
         </UserOnly>
     )

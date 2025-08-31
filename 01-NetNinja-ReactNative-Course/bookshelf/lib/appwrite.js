@@ -9,6 +9,6 @@ export const account = new Account(client)
 
 export const avatars = new Avatars(client)
 
-export const db = new Databases(client)
+export const databases = new Databases(client)
 
 

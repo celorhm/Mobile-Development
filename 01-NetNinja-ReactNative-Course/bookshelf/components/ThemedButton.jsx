@@ -1,15 +1,13 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 
-const ThemedButton = ({ style, text, ...props }) => {
+export const ThemedButton = ({ style, text, ...props }) => {
     return (
         <Pressable style={({ pressed }) => [styles.btn, pressed && styles.pressed, style]} {...props}>
             <Text style={styles.text}>{text}</Text>
         </Pressable>
     )
 }
-
-export default ThemedButton
 
 const styles = StyleSheet.create({
     pressed: {

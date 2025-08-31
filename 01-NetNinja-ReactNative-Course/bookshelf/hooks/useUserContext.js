@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { userContext } from "../contexts/UserContext";
+import { userContext } from "../contexts/userContext";
 
 
 export const useUserContextHook = () => {
