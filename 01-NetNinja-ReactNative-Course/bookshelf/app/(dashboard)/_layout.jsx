@@ -52,4 +52,4 @@ const DashboardLayout = () => {
 
 export default DashboardLayout
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({})

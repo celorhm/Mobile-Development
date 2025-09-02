@@ -5,12 +5,12 @@ import { ID } from 'react-native-appwrite'
 const DATABASE_ID = '68b1410b001fb0c45973'
 const COLLECTION_ID = 'books'
 
-// hooks
+// Hooks
 import { useState } from 'react'
-import { useUserContextHook } from '../../../hooks/useUserContext'
-import { useBooks } from '../../../hooks/useBooks'
-import { user } from '../../../hooks/useUserContext'
 import { useRouter } from 'expo-router'
+import { useUserContext } from '../../../hooks/useUserContext'
+import { useBookContext } from '../../../hooks/useBookContext'
+
 
 
 // Components
@@ -20,13 +20,13 @@ import { ThemedTextInput } from '../../../components/ThemedTextInput'
 import { ThemedButton } from '../../../components/ThemedButton'
 import { Spacer } from '../../../components/Spacer'
 
-
-const createBook = () => {
+// CreateBookScreen Component
+const CreateBookScreen = () => {
     const [loading, setLoading] = useState(false)
     const [bookTitle, setBookTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [description, setDescription] = useState("")
-    const { createBook } = useBooks()
+    const { createBook } = useBookContext()
     const router = useRouter()
 
     const handleBookSubmission = async () => {
@@ -34,13 +34,14 @@ const createBook = () => {
         setLoading(true)
         try {
             await createBook({ title: bookTitle, author, description })
+            router.replace('bookList')
         } catch (error) {
             return Error(error.message)
+
         } finally {
             setBookTitle("")
             setAuthor("")
             setDescription("")
-            router.replace('bookList')
             setLoading(false)
         }
     }
@@ -60,8 +61,10 @@ const createBook = () => {
     )
 }
 
-export default createBook
+export default CreateBookScreen
 
+
+// Styles
 const styles = StyleSheet.create({
     formContainer: {
         alignItems: 'center'

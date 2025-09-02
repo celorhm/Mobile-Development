@@ -1,21 +1,28 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+
+
+// Custom Components
 import { ThemedText } from '../../components/ThemedText'
 import { ThemedView } from '../../components/ThemedView'
 import ThemedButton from '../../components/ThemedButton'
 import { Spacer } from '../../components/Spacer'
-import { useUserContextHook } from '../../hooks/useUserContext'
-import { useRouter } from 'expo-router'
 
+
+// Hooks
+import { useRouter } from 'expo-router'
+import { useUserContext } from '../../hooks/useBookContext'
+
+// ProfileScreen Definition
 const ProfileScreen = () => {
-    const { logout } = useUserContextHook()
+    const { logout } = useUserContext()
     const router = useRouter()
 
 
     const handleLogout = async () => {
         await logout()
     }
-    return (
+    return null;/* (
         <ThemedView safe={true}>
             <ThemedText title={true}>Profile Page</ThemedText>
             <Spacer />
@@ -23,7 +30,7 @@ const ProfileScreen = () => {
                 <ThemedButton text={"Logout"} onPress={handleLogout} />
             </ThemedView>
         </ThemedView>
-    )
+    ) */
 }
 
 export default ProfileScreen

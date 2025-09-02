@@ -1,51 +1,54 @@
 import { createContext, useEffect, useState } from "react";
-import { account } from "../lib/appwrite";
+import { account, avatars, tablesDB } from '../lib/appwrite'
 import { ID } from "react-native-appwrite";
+import { toast } from "../lib/toasts";
 
-export const userContext = createContext()
 
+// Context Definition
+export const UserContext = createContext()
+
+
+// Context Provider Definition
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [authChecked, setAuthChecked] = useState(false)
 
-    const login = async (email, password) => {
+    const initialAuthentication = async () => {
         try {
-            await account.createEmailPasswordSession(email, password)
             const response = await account.get()
             setUser(response)
+            setAuthChecked(true)
+
+        } catch (error) {
+            console.log(error.message)
         }
-        catch (error) {
-            throw Error(error.message)
+    }
+    const login = async (email, password) => {
+        try {
+            const response = await account.createEmailPasswordSession({ email: email, password: password })
+            setUser(response)
+            toast('Welcome back. You are logged in')
+        } catch (error) {
+            console.log(error.message)
         }
+
+    }
+
+    const register = async (email, password) => {
+        await account.create({ userId: ID.unique(), email: email, password: password })
+        await login(email, password)
+        toast('Account Created')
+
     }
 
     const logout = async () => {
-        await account.deleteSession("current")
-        setUser(null)
-    }
-
-    const register = async (email, password, name) => {
-        try {
-            await account.create(ID.unique(), email, password, name)
-            await login(email, password)
-        } catch (error) {
-            throw Error(error.message)
-        }
-    }
-
-    const initialUserAuthentication = async () => {
-        try {
-            const response = await account.get()
-            setUser(response)
-        } catch (error) {
-            throw Error(error.message)
-        } finally {
-            setAuthChecked(true)
-        }
+        await account.deleteSession({ sessionId: "current" })
     }
 
     useEffect(() => {
-        initialUserAuthentication();
+        initialAuthentication();
     }, [])
-    return <userContext.Provider value={{ user, login, logout, register, authChecked }}>{children}</userContext.Provider>
+    return (<UserContext.Provider
+        value={{ login, logout, register, authChecked, user }}
+    >{children}</UserContext.Provider>)
 }

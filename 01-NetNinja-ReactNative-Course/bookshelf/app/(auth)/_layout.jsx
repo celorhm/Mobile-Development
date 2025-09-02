@@ -3,6 +3,7 @@ import React from 'react'
 import { Stack } from 'expo-router'
 
 
+// Layout Component
 const AuthLayout = () => {
     return (
         <Stack screenOptions={{ headerShown: false, animation: 'none' }}>

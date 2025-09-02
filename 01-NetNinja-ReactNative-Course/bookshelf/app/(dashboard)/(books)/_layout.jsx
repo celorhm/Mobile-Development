@@ -5,6 +5,7 @@ import { Stack } from 'expo-router'
 const _layout = () => {
     return (
         <Stack screenOptions={{ headerShown: false, animation: 'none' }}>
+            <Stack.Screen name='bookList' options={{ title: 'bookList', headerShown: false }} />
             <Stack.Screen name='createBook' options={{ title: 'createBook', headerShown: false }} />
         </Stack>
     )

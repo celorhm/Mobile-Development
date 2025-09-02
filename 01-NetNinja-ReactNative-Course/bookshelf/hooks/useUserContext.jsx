@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { userContext } from "../contexts/userContext";
+import { UserContext } from "../contexts/UserContext";
 
-
-export const useUserContextHook = () => {
-    const context = useContext(userContext)
+// UserHook
+export const useUserContext = () => {
+    const context = useContext(UserContext)
     if (!context) {
         return new Error("Use within a Usercontext Provider Component")
     }

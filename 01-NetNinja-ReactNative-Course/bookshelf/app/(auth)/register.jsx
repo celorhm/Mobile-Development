@@ -2,20 +2,25 @@ import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'reac
 import React, { useState } from 'react'
 import { Link, router } from 'expo-router'
 
-//Components
+//Custom Components
 import { ThemedView } from '../../components/ThemedView'
 import { ThemedText } from '../../components/ThemedText'
 import ThemedButton from '../../components/ThemedButton'
 import { ThemedTextInput } from '../../components/ThemedTextInput'
 import { Spacer } from '../../components/Spacer'
-import { useUserContextHook } from '../../hooks/useUserContext'
 
-const RegistractionScreen = () => {
+
+// Hooks
+// import { useUserContext } from '../../hooks/useUserContext'
+
+
+// Registeration Screen Component
+const UserRegisterationScreen = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [error, setError] = useState()
     const [username, setUsername] = useState()
-    const { user, register } = useUserContextHook()
+    const { user, register } = useUserContext()
 
 
     const handleRegistration = async () => {
@@ -27,7 +32,6 @@ const RegistractionScreen = () => {
             setError(error.message)
         }
     }
-
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -54,7 +58,7 @@ const RegistractionScreen = () => {
     )
 }
 
-export default RegistractionScreen;
+export default UserRegisterationScreen;
 
 const styles = StyleSheet.create({
     container: {

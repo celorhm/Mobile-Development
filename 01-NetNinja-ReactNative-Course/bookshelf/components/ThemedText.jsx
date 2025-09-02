@@ -18,11 +18,10 @@ export const ThemedText = ({ style, title = false, ...props }) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 35,
-        textAlign: 'center'
+        fontSize: 20
     },
     title: {
-        fontSize: 50,
+        fontSize: 28,
         textAlign: 'center'
 
     }

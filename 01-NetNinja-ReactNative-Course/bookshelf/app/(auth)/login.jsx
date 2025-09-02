@@ -1,23 +1,27 @@
 import { Keyboard, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 import React, { useState } from 'react'
-import { useUserContextHook } from '../../hooks/useUserContext'
-//Components
+
+// Hooks
+import { useUserContext } from '../../hooks/useUserContext'
+import { useRouter } from 'expo-router'
+
+//Custom Components
 import { ThemedView } from '../../components/ThemedView'
 import { ThemedText } from '../../components/ThemedText'
 import ThemedButton from '../../components/ThemedButton'
 import { ThemedTextInput } from '../../components/ThemedTextInput'
 import { Spacer } from '../../components/Spacer'
-import { useRouter } from 'expo-router'
 
+// LoginScreen Component
 const LoginScreen = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [error, setError] = useState()
     const router = useRouter();
 
-    const { login } = useUserContextHook()
+    const { login } = useUserContext()
 
-    const handleLogin = async () => {
+    /* const handleLogin = async () => {
         setError(null)
         try {
             await login(email, password)
@@ -26,10 +30,10 @@ const LoginScreen = () => {
             setError(error.message)
 
         }
-    }
+    } */
 
 
-    return (
+    return <ThemedText>Hello World</ThemedText>;/* (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <ThemedView safe={true} style={styles.container}>
                 <ThemedText title={true}>Login</ThemedText>
@@ -48,7 +52,7 @@ const LoginScreen = () => {
             </ThemedView>
         </TouchableWithoutFeedback>
 
-    )
+    ) */
 }
 
 export default LoginScreen

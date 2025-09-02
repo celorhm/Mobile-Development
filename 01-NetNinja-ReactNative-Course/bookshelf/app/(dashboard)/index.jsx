@@ -1,11 +1,17 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
+
+// Custom Components
 import { ThemedText } from '../../components/ThemedText'
 import { ThemedView } from '../../components/ThemedView'
-import { useUserContextHook } from '../../hooks/useUserContext'
 import { Spacer } from '../../components/Spacer'
 
+// Hooks
+import { useUserContext } from '../../hooks/useUserContext'
+
+
+// HomeScreen Component Definition
 const HomeScreen = () => {
-    const { user } = useUserContextHook();
+    const { user } = useUserContext();
 
     return (
         <ThemedView safe={true}>
